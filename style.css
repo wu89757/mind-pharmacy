@@ -655,12 +655,12 @@ button.btn {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 20px;
-    margin-bottom: 30px;
+    gap: 40px;
+    margin-bottom: 40px;
 }
 
 .intro-word {
-    font-size: 2.2rem;
+    font-size: 3.5rem;
     color: #4a3728;
     opacity: 0;
     animation: fadeInUp 1s ease forwards;
@@ -687,12 +687,12 @@ button.btn {
 }
 
 .intro-text {
-    font-size: 0.95rem;
+    font-size: 1.1rem;
     color: #5a4a3a;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     opacity: 0;
     animation: fadeInUp 0.8s ease forwards;
-    line-height: 1.6;
+    line-height: 1.8;
     font-family: 'Noto Serif SC', 'Songti SC', 'STSong', serif;
 }
 
@@ -746,11 +746,11 @@ button.btn {
 }
 
 .intro-final {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     color: #4a3728;
-    margin-top: 20px;
-    margin-bottom: 40px;
-    line-height: 1.8;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    line-height: 2;
     opacity: 0;
     animation: fadeInUp 1.2s ease forwards;
     animation-delay: 3.8s;
@@ -882,5 +882,28 @@ button.btn {
 
     .book-card.top-book .book-title {
         font-size: 1.4rem;
+    }
+
+    /* 手机端引言页字体调整 */
+    .intro-pair {
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    .intro-word {
+        font-size: 2.2rem;
+    }
+
+    .intro-text {
+        font-size: 0.95rem;
+        margin-bottom: 10px;
+        line-height: 1.6;
+    }
+
+    .intro-final {
+        font-size: 1.1rem;
+        margin-top: 20px;
+        margin-bottom: 40px;
+        line-height: 1.8;
     }
 }
