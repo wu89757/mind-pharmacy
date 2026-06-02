@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>心灵药铺</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div id="welcome-page" class="page active">
+            <div class="paper-texture"></div>
+            <div class="welcome-content">
+                <h1 class="title">心灵药铺</h1>
+                <p class="subtitle">这里不出售药物。</p>
+                <p class="subtitle">只出售一些恰好能陪你走一段路的书。</p>
+                <button class="btn bookmark-btn" onclick="goToIntro()">
+                    <span class="btn-text">推开药铺的门</span>
+                </button>
+            </div>
+        </div>
+
+        <div id="intro-page" class="page">
+            <div class="paper-texture"></div>
+            <div class="intro-content">
+                <div class="intro-pair">
+                    <span class="intro-word intro-left">「人」</span>
+                    <div class="intro-line"></div>
+                    <span class="intro-word intro-right">「书」</span>
+                </div>
+                <p class="intro-text">需要双向的寻找</p>
+                <p class="intro-text">有时是人翻开一本书</p>
+                <p class="intro-text">在心灵药铺</p>
+                <p class="intro-text">店主会让书走向你</p>
+                <div class="intro-divider"></div>
+                <p class="intro-text">一个灵魂</p>
+                <p class="intro-text">对应一味药方</p>
+                <p class="intro-text">或治愈</p>
+                <p class="intro-text">或滋补</p>
+                <p class="intro-text">或唤醒</p>
+                <p class="intro-text">或陪伴</p>
+                <p class="intro-final">愿你寻得<br>最适合自己的一味药</p>
+                <button class="btn bookmark-btn intro-btn" onclick="startTest()">
+                    <span class="btn-text">开始寻找</span>
+                </button>
+            </div>
+        </div>
+
+        <div id="test-page" class="page">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <div class="question-container">
+                <p class="question-number" id="question-number">第 1 题</p>
+                <p class="question-text" id="question-text"></p>
+                <div class="options" id="options"></div>
+            </div>
+            <div class="navigation">
+                <button class="btn secondary" id="prev-btn" onclick="prevQuestion()" style="display:none;">上一题</button>
+                <button class="btn primary" id="next-btn" onclick="nextQuestion()" disabled>下一题</button>
+            </div>
+        </div>
+
+        <div id="transition-page" class="page">
+            <div class="transition-content">
+                <div class="transition-text" id="transition-text"></div>
+                <button class="btn bookmark-btn transition-btn" id="transition-btn" onclick="showResults()"
+                    style="display:none;">
+                    <span class="btn-text">看看店主为你配的药方</span>
+                </button>
+            </div>
+        </div>
+
+        <div id="result-page" class="page">
+            <div class="result-header">
+                <h2 class="result-title">今日药方</h2>
+            </div>
+            <div class="result-books" id="result-books"></div>
+            <div class="result-actions">
+                <button class="btn bookmark-btn" onclick="retest()">重新测试</button>
+                <button class="btn bookmark-btn" onclick="shareResult()">分享结果</button>
+                <button class="btn bookmark-btn" onclick="viewHistory()">历史记录</button>
+            </div>
+            <div class="owner-box" onclick="showOwnerMessage()">
+                <span class="owner-icon">🍃</span>
+                <span class="owner-text">店主说</span>
+            </div>
+        </div>
+
+        <div id="owner-modal" class="modal">
+            <div class="modal-content owner-content">
+                <button class="btn close-btn" onclick="closeOwnerModal()">×</button>
+                <div class="owner-message">
+                    <p>心灵药铺很高兴遇见你。</p>
+                    <p class="space"></p>
+                    <p>药铺店主是一名大一的学生，</p>
+                    <p>平时没事喜欢看看书。</p>
+                    <p class="space"></p>
+                    <p>今年年初，</p>
+                    <p>我读到了几本很好的书，</p>
+                    <p>它们未必给了我答案，</p>
+                    <p>却陪我走过了一段迷茫的路。</p>
+                    <p class="space"></p>
+                    <p>我感激这种茫茫人海中与同频灵魂的共振，</p>
+                    <p>也相信书与人之间存在着特别的缘分。</p>
+                    <p class="space"></p>
+                    <p>不是每本书都适合你，</p>
+                    <p>可总有一本书属于你，</p>
+                    <p>希望心灵药铺能够帮助你找到它。</p>
+                    <p class="space"></p>
+                    <p>如果你想要进一步走进我的世界，</p>
+                    <p>欢迎移步微信公众号，</p>
+                    <p class="owner-signature">「小吴看书」</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="history-page" class="page">
+            <div class="history-header">
+                <h2>你的阅读足迹</h2>
+                <button class="btn close-btn" onclick="closeHistory()">×</button>
+            </div>
+            <div class="history-list" id="history-list"></div>
+        </div>
+
+        <div id="share-modal" class="modal">
+            <div class="modal-content">
+                <div class="share-card" id="share-card">
+                    <h3 class="share-title">心灵药铺</h3>
+                    <p class="share-subtitle">我的阅读画像</p>
+                    <div class="share-books" id="share-books"></div>
+                    <p class="share-tip">识别二维码，开启你的心灵之旅</p>
+                </div>
+                <button class="btn primary" onclick="downloadShareCard()">保存图片</button>
+                <button class="btn secondary" onclick="closeShareModal()">关闭</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
