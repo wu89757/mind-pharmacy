@@ -5,11 +5,13 @@
 }
 
 body {
-    font-family: 'Noto Serif SC', 'STSong', serif;
+    font-family: 'Noto Serif SC', 'Source Han Serif SC', 'STSong', 'SimSun', 'Songti SC', serif;
     background: #f7f3eb;
     min-height: 100vh;
     overflow-x: hidden;
     overflow-y: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .container {
@@ -202,6 +204,21 @@ body {
     color: #4a3728;
     letter-spacing: 0.08em;
     font-weight: 500;
+}
+
+button,
+button:active,
+button:focus {
+    color: #4a3728 !important;
+    text-decoration: none !important;
+    -webkit-tap-highlight-color: transparent;
+}
+
+button.btn {
+    color: #4a3728;
+    border: none;
+    background: transparent;
+    font-family: inherit;
 }
 
 .bookmark-btn:hover {
@@ -658,9 +675,11 @@ body {
 }
 
 .intro-line {
-    width: 80px;
+    flex: 1;
+    min-width: 60px;
+    max-width: 120px;
     height: 1px;
-    background: linear-gradient(90deg, #9ca96e 0%, rgba(156, 169, 110, 0.3) 100%);
+    background: linear-gradient(90deg, rgba(156, 169, 110, 0.3) 0%, #9ca96e 50%, rgba(156, 169, 110, 0.3) 100%);
     opacity: 0;
     animation: fadeIn 1s ease forwards;
     animation-delay: 1.2s;
